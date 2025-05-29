@@ -224,18 +224,18 @@ source .venv/bin/activate
 ### **BF16 Issue**
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/hustle-airdrops/Gensyn_Guide_with_all_solutions/main/bf16_fix.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/hustleairdrops/Gensyn_Guide_with_all_solutions/main/bf16_fix.sh)"
 ```
 
 ### **Fix DHTNode Bootstrap**
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/hustle-airdrops/Gensyn_Guide_with_all_solutions/main/fix_dhtnode_bootstrap.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/hustleairdrops/Gensyn_Guide_with_all_solutions/main/fix_dhtnode_bootstrap.sh)"
 ```
 
 ### **Fix Login Issue**
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/hustle-airdrops/Gensyn_Guide_with_all_solutions/main/fix_login.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/hustleairdrops/Gensyn_Guide_with_all_solutions/main/fix_login.sh)"
 ```
 
 ### **If you see `Daemon And Bootstrap Error`, just run your node 3-4 times.**
