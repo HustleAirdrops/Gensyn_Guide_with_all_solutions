@@ -1,6 +1,4 @@
-# Gensyn_Guide_with_all_solutions
-
-# 🚀 Gensyn RL-Swarm Node Setup Guide
+# 🚀 Gensyn RL-Swarm Node Setup Guide + All Solutions
 
 Easily set up and run your Gensyn RL-Swarm node on **Linux/WSL** or **Mac**.  
 **All commands are copy-paste ready!**
