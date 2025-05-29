@@ -127,6 +127,8 @@ yarn add viem@latest
 
 ```bash
 cd ..
+```
+```bash
 ./run_rl_swarm.sh
 ```
 
