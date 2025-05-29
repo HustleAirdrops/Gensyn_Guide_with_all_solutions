@@ -225,7 +225,12 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/hustle-airdrops/Gensyn_G
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/hustle-airdrops/Gensyn_Guide_with_all_solutions/main/fix_dhtnode_bootstrap.sh)"
 ```
 
-If you see `Daemon And Bootstrap Error`, just run your node 3-4 times.
+### **Fix Login Issue**
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/hustle-airdrops/Gensyn_Guide_with_all_solutions/main/fix_login.sh)"
+```
+
+### **If you see `Daemon And Bootstrap Error`, just run your node 3-4 times.**
 
 ---
 
@@ -238,7 +243,7 @@ If you see `Daemon And Bootstrap Error`, just run your node 3-4 times.
 
 ## 📢 More Guides & Updates
 
-- Join [Hustle Airdrops Telegram](https://t.me/Hustle_Airdropsek) for more help!
+- Join [Hustle Airdrops Telegram](https://t.me/Hustle_Airdrops) for more help!
 
 ---
 
