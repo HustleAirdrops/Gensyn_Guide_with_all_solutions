@@ -162,13 +162,13 @@ Follow the prompts:
 
 ## 🆔 Save Your Credentials
 
-- After login, your **Username** and **Peer ID** will appear in the terminal.  
-  **Save them!**
-
 - When prompted:  
   **Would you like to push models you train in the RL swarm to the Hugging Face Hub?**  
   Enter: `N`
-
+  
+- After login, your **Username** and **Peer ID** will appear in the terminal.  
+  **Save them!**
+  
 ---
 
 ## 🖥️ VPS Users: Detach Screen
