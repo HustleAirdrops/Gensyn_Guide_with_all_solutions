@@ -197,8 +197,12 @@ Open and save the 3 links provided.
 
 ```bash
 cd rl-swarm
+```
+```bash
 python3 -m venv .venv
 source .venv/bin/activate
+```
+```bash
 ./run_rl_swarm.sh
 ```
 
