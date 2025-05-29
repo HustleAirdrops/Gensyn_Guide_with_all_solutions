@@ -168,7 +168,9 @@ Follow the prompts:
   
 - After login, your **Username** and **Peer ID** will appear in the terminal.  
   **Save them!**
-  
+
+![Peer ID](peerid.png)
+
 ---
 
 ## 🖥️ VPS Users: Detach Screen
