@@ -156,7 +156,7 @@ Follow the prompts:
 - **VPS:**  
   Open a new terminal/tab and run:
   ```bash
-  ssh -R 80:localhost:3000 serveo.net
+  cloudflared tunnel --url http://localhost:3000
   ```
   Open the provided link in your browser, login, then return to the node terminal.
 
