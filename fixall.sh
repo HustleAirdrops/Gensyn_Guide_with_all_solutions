@@ -28,25 +28,6 @@ for file in "$CONFIG_FOLDER"/grp*.yaml; do
 done
 
 echo ""
-echo "🔧 Fixing DHT bootstrap issue in grpo_runner.py..."
-
-cd "$HOME/rl-swarm/hivemind_exp/runner/" || {
-  echo "❌ gensyn directory not found!"
-  exit 1
-}
-
-PY_FILE="grpo_runner.py"
-SEARCH_LINE='dht = hivemind.DHT(start=True, **self._dht_kwargs(grpo_args))'
-REPLACEMENT='dht = hivemind.DHT(start=True, ensure_bootstrap_success=False, **self._dht_kwargs(grpo_args))'
-
-if grep -Fq "$SEARCH_LINE" "$PY_FILE"; then
-  sed -i "s|$SEARCH_LINE|$REPLACEMENT|" "$PY_FILE"
-  echo "✅ DHT line updated successfully in $PY_FILE"
-else
-  echo "ℹ️ DHT line not found or may already be patched."
-fi
-
-echo ""
 echo "🔄 Fetching updated page.tsx from GitHub and replacing the old one..."
 
 PAGE_DEST="$HOME/rl-swarm/modal-login/app/page.tsx"
@@ -60,3 +41,5 @@ fi
 
 echo ""
 echo "🎉 All patches have been applied. You're good to go!"
+
+
