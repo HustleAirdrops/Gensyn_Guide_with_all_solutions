@@ -110,26 +110,10 @@ cd rl-swarm
 python3 -m venv .venv
 source .venv/bin/activate
 ```
-
----
-
-## 📦 Install Dependencies
-
-```bash
-cd modal-login
-yarn install
-yarn upgrade
-yarn add next@latest
-yarn add viem@latest
-```
-
 ---
 
 ## 🚦 Run the Swarm Node
 
-```bash
-cd ..
-```
 ```bash
 ./run_rl_swarm.sh
 ```
