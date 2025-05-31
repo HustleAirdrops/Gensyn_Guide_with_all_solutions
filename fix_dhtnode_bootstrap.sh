@@ -8,7 +8,7 @@ cd "$HOME/rl-swarm/hivemind_exp/runner/" || {
 
 # Step 2: Update the DHT line
 file="grpo_runner.py"
-search_line='dht = hivemind.DHT(start=True, **self._dht_kwargs(grpo_args))'
+search_line='dht = hivemind.DHT(start=True, startup_timeout=30, **self._dht_kwargs(grpo_args))'
 replace_line='dht = hivemind.DHT(start=True, ensure_bootstrap_success=False, **self._dht_kwargs(grpo_args))'
 
 if grep -Fq "$search_line" "$file"; then
