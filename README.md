@@ -214,7 +214,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/hustleairdrops/Gensyn_Gu
 ### **Fix DHTNode Bootstrap**
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/hustleairdrops/Gensyn_Guide_with_all_solutions/main/fix_dhtnode_bootstrap.sh)"
+sed -i -r 's|(dht = hivemind.DHT\(start=True, startup_timeout=30, *)(.*)|\1ensure_bootstrap_success=False, \2|' ~/rl-swarm/hivemind_exp/runner/grpo_runner.py
 ```
 
 ### **Fix Login Issue**
