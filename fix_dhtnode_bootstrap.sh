@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Step 1: Go to correct directory
-cd "$HOME/rl-swarm/hivemind_exp/runner/gensyn" || {
+cd "$HOME/rl-swarm/hivemind_exp/runner/" || {
   echo "❌ Directory not found!"
   exit 1
 }
 
 # Step 2: Update the DHT line
-file="testnet_grpo_runner.py"
+file="grpo_runner.py"
 search_line='dht = hivemind.DHT(start=True, **self._dht_kwargs(grpo_args))'
 replace_line='dht = hivemind.DHT(start=True, ensure_bootstrap_success=False, **self._dht_kwargs(grpo_args))'
 
