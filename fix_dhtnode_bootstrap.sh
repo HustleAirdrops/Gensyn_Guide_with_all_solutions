@@ -7,12 +7,16 @@ cd "$HOME/rl-swarm/hivemind_exp/runner/" || {
 
 file="grpo_runner.py"
 
-search='dht = hivemind.DHT(start=True, startup_timeout=30, **self._dht_kwargs(grpo_args))'
-replace='dht = hivemind.DHT(start=True, startup_timeout=30, ensure_bootstrap_success=False, **self._dht_kwargs(grpo_args))'
+# Check if the line contains the DHT init and does NOT have the bootstrap fix yet
+if grep -q 'dht = hivemind.DHT(start=True, startup_timeout=30' "$file"; then
+  if grep -q 'ensure_bootstrap_success=False' "$file"; then
+    echo "ℹ️ Patch already applied in $file"
+    exit 0
+  fi
 
-if grep -Fq "$search" "$file"; then
-  sed -i "s|$search|$replace|" "$file"
-  echo "✅ DHT bootstrap line updated successfully in $file"
+  # Insert ensure_bootstrap_success=False after startup_timeout=30,
+  sed -i 's|\(dht = hivemind.DHT(start=True, startup_timeout=30,\) *|\1 ensure_bootstrap_success=False, |' "$file"
+  echo "✅ Patch applied successfully to $file"
 else
-  echo "❗ Exact target line not found or already updated."
+  echo "❌ Could not find the target line to patch in $file"
 fi
