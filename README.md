@@ -205,24 +205,54 @@ source .venv/bin/activate
 
 ## ❓ FAQ & Troubleshooting
 
-### **BF16 Issue**
+---
 
+### 🚫 Terminate Problem (Reset Gensyn Node)
+<img src="problem1.jpg" width="500px" alt="Terminate Problem">
+
+> ⚠️ **Must save your `swarm.pem` file before deleting the node.**  
+> 📦 [How to back it up? Click here.](https://github.com/HustleAirdrops/Gensyn_Guide_with_all_solutions/blob/main/README.md#-backup-credentials)
+
+- Delete Old Gensyn
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/hustleairdrops/Gensyn_Guide_with_all_solutions/main/bf16_fix.sh)"
+cd ~
+sudo rm -rf ~/rl-swarm
+```
+- Reinstall Gensyn
+```bash
+git clone https://github.com/gensyn-ai/rl-swarm.git
+cd rl-swarm
+```
+- Start Node
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+./run_rl_swarm.sh
 ```
 
-### **Fix DHTNode Bootstrap**
+✅ You're now ready to go!
+
+---
+
+### 🛠️ BF16 / Login / Minor Errors
+
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/hustleairdrops/Gensyn_Guide_with_all_solutions/main/solutions_file/fixall.sh)"
+```
+
+---
+
+### 🔧 Fix DHTNode Bootstrap Error
 
 ```bash
 sed -i -r 's|(dht = hivemind.DHT\(start=True, startup_timeout=30, *)(.*)|\1ensure_bootstrap_success=False, \2|' ~/rl-swarm/hivemind_exp/runner/grpo_runner.py
 ```
 
-### **Fix Login Issue**
-```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/hustleairdrops/Gensyn_Guide_with_all_solutions/main/fix_login.sh)"
-```
+---
 
-### **If you see `Daemon And Bootstrap Error`, just run your node 3-4 times.**
+### 🔁 Daemon & Bootstrap Error?
+
+> Just run your node **3–4 times** — it usually resolves itself.
 
 ---
 
