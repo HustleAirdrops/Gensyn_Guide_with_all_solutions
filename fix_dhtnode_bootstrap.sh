@@ -1,19 +1,18 @@
 #!/bin/bash
 
-# Step 1: Go to correct directory
+# Step 1: Navigate to the correct directory
 cd "$HOME/rl-swarm/hivemind_exp/runner/" || {
   echo "❌ Directory not found!"
   exit 1
 }
 
-# Step 2: Update the DHT line
+# Step 2: Target file
 file="grpo_runner.py"
-search_line='dht = hivemind.DHT(start=True, startup_timeout=30, **self._dht_kwargs(grpo_args))'
-replace_line='dht = hivemind.DHT(start=True, startup_timeout=30, ensure_bootstrap_success=False, **self._dht_kwargs(grpo_args))'
 
-if grep -Fq "$search_line" "$file"; then
-  sed -i "s|$search_line|$replace_line|" "$file"
-  echo "✅ DHT bootstrap issue fixed in $file"
+# Step 3: Use sed to insert 'ensure_bootstrap_success=False' only if it's not already present
+if grep -q 'hivemind.DHT(start=True' "$file" && ! grep -q 'ensure_bootstrap_success=False' "$file"; then
+  sed -i 's|\(hivemind.DHT(start=True[^)]*\)|\1, ensure_bootstrap_success=False|' "$file"
+  echo "✅ DHT bootstrap setting injected successfully in $file"
 else
-  echo "❗ Target line not found or already modified."
+  echo "ℹ️ Line already modified or DHT init not found."
 fi
