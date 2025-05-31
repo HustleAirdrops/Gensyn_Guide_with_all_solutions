@@ -175,7 +175,7 @@ screen -r gensyn
 [ -f backup.sh ] && rm backup.sh; curl -sSL -O https://raw.githubusercontent.com/zunxbt/gensyn-testnet/main/backup.sh && chmod +x backup.sh && ./backup.sh
 ```
 
-Open and save the 3 links provided.
+Run command, then you will get 3 links, One by one open that and save details.
 
 ---
 
