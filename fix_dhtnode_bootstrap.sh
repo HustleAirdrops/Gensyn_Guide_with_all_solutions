@@ -7,7 +7,7 @@ cd "$HOME/rl-swarm/hivemind_exp/runner/" || {
 
 file="grpo_runner.py"
 
-# Check if file contains DHT initialization line
+# Check if file has dht initialization
 if grep -q 'dht = hivemind.DHT(start=True' "$file"; then
 
   # Check if patch already applied
@@ -16,8 +16,9 @@ if grep -q 'dht = hivemind.DHT(start=True' "$file"; then
     exit 0
   fi
 
-  # Perform the replacement — insert ensure_bootstrap_success=False after startup_timeout=30,
-  sed -i -r 's|(dht = hivemind.DHT\(start=True,\s*startup_timeout=30,)(\s*)|\1 ensure_bootstrap_success=False, |' "$file"
+  # Replace any line starting with dht = hivemind.DHT(start=True, ... startup_timeout=30, ...
+  # Insert ensure_bootstrap_success=False, after startup_timeout=30,
+  sed -i -r 's|(dht = hivemind.DHT\(start=True, *startup_timeout=30, *)(.*)|\1ensure_bootstrap_success=False, \2|' "$file"
 
   echo "✅ Patch applied successfully to $file"
 
