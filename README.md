@@ -207,7 +207,7 @@ source .venv/bin/activate
 
 ---
 
-### 🚫 Terminate Problem (Reset Gensyn Node)
+### 1. 🚫 Terminate Problem (Reset Gensyn Node)
 <img src="problem1.jpg" width="500px" alt="Terminate Problem">
 
 > ⚠️ **Must save your `swarm.pem` file before deleting the node.**  
@@ -234,7 +234,7 @@ source .venv/bin/activate
 
 ---
 
-### 🛠️ BF16 / Login / Minor Errors
+### 2. 🛠️ BF16 / Login / Minor Errors
 
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/hustleairdrops/Gensyn_Guide_with_all_solutions/main/solutions_file/fixall.sh)"
@@ -242,7 +242,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/hustleairdrops/Gensyn_Gu
 
 ---
 
-### 🔧 Fix DHTNode Bootstrap Error
+### 3. 🔧 Fix DHTNode Bootstrap Error
 
 ```bash
 sed -i -r 's|(dht = hivemind.DHT\(start=True, startup_timeout=30, *)(.*)|\1ensure_bootstrap_success=False, \2|' ~/rl-swarm/hivemind_exp/runner/grpo_runner.py
@@ -250,10 +250,19 @@ sed -i -r 's|(dht = hivemind.DHT\(start=True, startup_timeout=30, *)(.*)|\1ensur
 
 ---
 
-### 🔁 Daemon & Bootstrap Error?
+### 4. 🔁 Daemon & Bootstrap Error?
 
 > Just run your node **3–4 times** — it usually resolves itself.
 
+---
+
+### 5. Identity is already taken by other peer
+<img src="problem4.jpg" width="500px" alt="Existing Node Kill">
+
+```bash
+pkill -f swarm.pem
+```
+> After running this command, run your node ( it'll be fixed)
 ---
 
 ### **Note**
