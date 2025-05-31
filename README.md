@@ -127,7 +127,7 @@ Follow the prompts:
     Enter: `a`
 
 3. **How many parameters (in billions)?**  
-    Choose: `[0.5, 1.5, 7, 32, 72]`
+    Choose: `7`
 
 ---
 
@@ -154,8 +154,6 @@ Follow the prompts:
   
 - After login, your **Username** and **Peer ID** will appear in the terminal.  
   **Save them!**
-
-![Peer ID](peerid.png)
 
 ---
 
