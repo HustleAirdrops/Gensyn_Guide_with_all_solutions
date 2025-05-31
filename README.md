@@ -263,10 +263,10 @@ sed -i -r 's|(dht = hivemind.DHT\(start=True, startup_timeout=30, *)(.*)|\1ensur
 
 ---
 
-## 📢 More Guides & Updates
 
-- Join [Hustle Airdrops Telegram](https://t.me/Hustle_Airdrops) for more help!
+> 💬 **Need help?** Reach out: [@Legend_Aashish](https://t.me/Legend_Aashish)  
+
+> 📺 **All guides, videos & updates:** [@Hustle_Airdrops](https://t.me/Hustle_Airdrops)  
+> 🚀 **Stay ahead — join the channel now!**
 
 ---
-
-**Happy Swarming! 🚀**
