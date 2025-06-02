@@ -243,7 +243,19 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/hustleairdrops/Gensyn_Gu
 ### 3. 🔧 Fix DHTNode Bootstrap Error
 
 ```bash
-sed -i -r 's|(dht = hivemind.DHT\(start=True, startup_timeout=30, *)(.*)|\1ensure_bootstrap_success=False, \2|' ~/rl-swarm/hivemind_exp/runner/grpo_runner.py
+perl -i -pe '
+  if (/hivemind\.DHT\(start=True, startup_timeout=30/) {
+    @matches = /ensure_bootstrap_success=[^,)\s]+/g;
+    if (@matches > 1) {
+      # Remove all duplicates, keep only first
+      s/(,?\s*ensure_bootstrap_success=[^,)\s]+)+//g;
+      s/(hivemind\.DHT\(start=True, startup_timeout=30, )/$1$matches[0], /;
+    } elsif (@matches == 0) {
+      # If missing, add once after startup_timeout=30,
+      s/(hivemind\.DHT\(start=True, startup_timeout=30, )/$1ensure_bootstrap_success=False, /;
+    }
+  }
+' ~/rl-swarm/hivemind_exp/runner/grpo_runner.py
 ```
 
 ---
