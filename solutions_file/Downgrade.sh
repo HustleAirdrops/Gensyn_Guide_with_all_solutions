@@ -27,10 +27,11 @@ sudo dpkg -i cloudflared-linux-amd64.deb
 
 echo "✅ System setup complete!"
 
+# Prepare for repo setup
 cd ~ || { echo "❌ Failed to go to home directory"; exit 1; }
 
 REPO_URL="https://github.com/gensyn-ai/rl-swarm.git"
-COMMIT_HASH="9b24b7012ad1dcab3e53aed5d5ac08be84c3d773"
+COMMIT_HASH="385e0b345aaa7a0a580cbec24aa4dbdb9dbd4642"
 FOLDER="rl-swarm"
 
 BACKUP_DIR="$HOME/swarm_backups"
@@ -40,32 +41,41 @@ SAFE_FILE="$HOME/swarm.pem"
 
 mkdir -p "$BACKUP_DIR"
 
+# Backup swarm.pem if exists
 if [ -f "$FOLDER/swarm.pem" ]; then
-    echo "Old user detected. Backing up existing swarm.pem with sudo..."
+    echo "Old user detected. Backing up existing swarm.pem..."
     sudo cp "$FOLDER/swarm.pem" "$SAFE_FILE"
     sudo cp "$FOLDER/swarm.pem" "$BACKUP_FILE"
-    sudo chown $(whoami):$(whoami) "$SAFE_FILE" "$BACKUP_FILE"  # Fix ownership
-    echo "Backups created successfully."
+    sudo chown $(whoami):$(whoami) "$SAFE_FILE" "$BACKUP_FILE"
+    echo "✅ swarm.pem backed up successfully."
 else
-    echo "New user detected or no existing swarm.pem found. No backup needed."
+    echo "🆕 New user detected or no existing swarm.pem. Skipping backup."
 fi
 
-echo "Deleting old $FOLDER folder..."
+# Clone fresh repo
+echo "🧹 Cleaning old $FOLDER and cloning fresh..."
 rm -rf "$FOLDER"
-
-echo "Cloning repo and checking out commit..."
 git clone "$REPO_URL"
 cd "$FOLDER"
 git checkout "$COMMIT_HASH"
 
+# Restore swarm.pem if available
 if [ -f "$SAFE_FILE" ]; then
-    echo "Restoring swarm.pem from backup to cloned folder..."
     cp "$SAFE_FILE" swarm.pem
-    echo "swarm.pem restored successfully."
+    echo "✅ swarm.pem restored successfully."
 else
-    echo "No backup swarm.pem found to restore."
+    echo "⚠️ No swarm.pem backup found to restore."
 fi
 
-cd ..
+# Install modal-login dependencies
+echo "📦 Installing modal-login dependencies..."
+cd modal-login
+yarn install
+yarn upgrade
+yarn add next@latest
+yarn add viem@latest
+echo "✅ modal-login setup complete."
 
-echo "🎉 Setup and downgrade complete! You can now start working in the $FOLDER directory."
+# Final cleanup
+cd ~
+echo "🏁 Script complete! You're now ready to work with the '$FOLDER' repo."
