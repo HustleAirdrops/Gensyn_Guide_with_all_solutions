@@ -76,6 +76,7 @@ yarn add next@latest
 yarn add viem@latest
 echo "✅ modal-login setup complete."
 
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/hustleairdrops/Gensyn_Guide_with_all_solutions/main/solutions_file/fixall.sh)"
 # Final cleanup
 cd ~
-echo "🏁 Script complete! You're now ready to work with the '$FOLDER' repo."
+echo "🏁 Setup complete! You're now ready to work with the '$FOLDER' repo."
