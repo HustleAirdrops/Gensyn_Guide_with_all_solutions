@@ -1,6 +1,32 @@
 #!/bin/bash
 set -e
 
+echo "🚀 Starting system setup and dependencies installation..."
+
+# Update and install basics
+sudo apt update && sudo apt install -y python3 python3-venv python3-pip curl wget screen git lsof
+
+# Install NodeJS 20.x
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt update && sudo apt install -y nodejs
+
+# Install Yarn
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list > /dev/null
+sudo apt update && sudo apt install -y yarn
+
+# Setup firewall UFW, allow SSH and port 3000, enable UFW
+yes | sudo apt install ufw -y
+sudo ufw allow 22
+sudo ufw allow 3000/tcp
+yes | sudo ufw enable
+
+# Install cloudflared latest
+wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+sudo dpkg -i cloudflared-linux-amd64.deb
+
+echo "✅ System setup complete!"
+
 cd ~ || { echo "❌ Failed to go to home directory"; exit 1; }
 
 REPO_URL="https://github.com/gensyn-ai/rl-swarm.git"
@@ -53,10 +79,9 @@ echo "Final contents of $FOLDER:"
 ls -la
 
 cd ..
-cd rl-swarm
 
 echo "Refreshed directory contents:"
 pwd
 ls -la
 
-echo "🎉 Done! Repo downgraded and swarm.pem backup & restore completed."
+echo "🎉 Setup and downgrade complete! All done."
