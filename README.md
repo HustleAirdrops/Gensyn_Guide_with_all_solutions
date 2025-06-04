@@ -280,8 +280,8 @@ pkill -f swarm.pem
 If you are facing problems with the latest version, you can downgrade easily:
 
 ```bash
-```
 cd ~
+```
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/HustleAirdrops/Gensyn_Guide_with_all_solutions/main/solutions_file/Downgrade.sh)"
 ```
