@@ -28,7 +28,7 @@ else
 fi
 
 # -------- STEP 3: Delete old rl-swarm folder --------
-rm -rf "$FOLDER_NAME"
+sudo rm -rf "$FOLDER_NAME"
 echo "🧹 Deleted old rl-swarm folder."
 
 # -------- STEP 4: Clone and checkout to specific commit --------
