@@ -275,6 +275,35 @@ pkill -f swarm.pem
 > After running this command, run your node ( it'll be fixed)
 ---
 
+### 6. 🟠 Downgrade RL-Swarm Version (For users facing issues with the new version)
+
+If you are facing problems with the latest version, you can downgrade easily:
+
+```bash
+```
+cd ~
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/HustleAirdrops/Gensyn_Guide_with_all_solutions/main/solutions_file/Downgrade.sh)"
+```
+
+After downgrading, run these commands to start your node ( Create Screen if you want to run in background ):
+
+```bash
+cd rl-swarm
+```
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+```bash
+./run_rl_swarm.sh
+```
+
+---
+
+
+
+
 ### **Note**
 
 - If you see `0x0000000000000000000000000000000000000000` in the Connected EOA Address section, your contribution is not being recorded.  
