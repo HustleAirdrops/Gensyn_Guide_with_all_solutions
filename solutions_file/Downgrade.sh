@@ -30,7 +30,7 @@ echo "✅ System setup complete!"
 cd ~ || { echo "❌ Failed to go to home directory"; exit 1; }
 
 REPO_URL="https://github.com/gensyn-ai/rl-swarm.git"
-COMMIT_HASH="9b24b7012ad1dcab3e53aed5d5ac08be84c3d773"
+COMMIT_HASH="385e0b345aaa7a0a580cbec24aa4dbdb9dbd4642"
 FOLDER="rl-swarm"
 
 BACKUP_DIR="$HOME/swarm_backups"
