@@ -1,5 +1,6 @@
 #!/bin/bash
-# Color setup AAAAAAAAA
+# Color setup sss
+
 if [ -t 1 ] && [ -n "$(tput colors)" ] && [ "$(tput colors)" -ge 8 ]; then
     BOLD=$(tput bold)
     RED=$(tput setaf 1)
@@ -137,7 +138,6 @@ reduce_sample() {
             echo -e "${RED}❌ Failed to fix permissions for $config_file${NC}"
             return 1
         fi
-    }
     log "INFO" "📝 Current content of $config_file:"
     cat "$config_file" >> "$LOG_FILE"
     log "INFO" "📝 Modifying $config_file to set num_train_samples to 1"
@@ -153,8 +153,6 @@ reduce_sample() {
     bash "./run_rl_swarm.sh"
     log "INFO" "📝 Content of $config_file after running run_rl_swarm.sh:"
     cat "$config_file" >> "$LOG_FILE"
-}
-
 # Swap Management
 manage_swap() {
     log "INFO" "Starting swap file management for $SWAP_FILE..."
