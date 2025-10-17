@@ -1,6 +1,5 @@
 #!/bin/bash
-# Color setup sss
-
+# Color setup AAAAAAAAA
 if [ -t 1 ] && [ -n "$(tput colors)" ] && [ "$(tput colors)" -ge 8 ]; then
     BOLD=$(tput bold)
     RED=$(tput setaf 1)
@@ -119,40 +118,9 @@ install_deps() {
 }
 
 reduce_sample() {
-    local config_file="$SWARM_DIR/rgym_exp/config/rg-swarm.yaml"
-    cd "$SWARM_DIR" || {
-        log "ERROR" "❌ Failed to change to directory $SWARM_DIR"
-        echo -e "${RED}❌ Failed to change to directory $SWARM_DIR${NC}"
-        return 1
-    }
-    if [ ! -f "$config_file" ]; then
-        log "ERROR" "❌ Config file $config_file not found"
-        echo -e "${RED}❌ Config file $config_file not found${NC}"
-        return 1
-    }
-    if [ ! -w "$config_file" ]; then
-        log "WARN" "⚠️ Config file $config_file is not writable, attempting to fix permissions"
-        sudo chmod u+w "$config_file"
-        if [ $? -ne 0 ]; then
-            log "ERROR" "❌ Failed to fix permissions for $config_file"
-            echo -e "${RED}❌ Failed to fix permissions for $config_file${NC}"
-            return 1
-        fi
-    log "INFO" "📝 Current content of $config_file:"
-    cat "$config_file" >> "$LOG_FILE"
-    log "INFO" "📝 Modifying $config_file to set num_train_samples to 1"
-    sed -i -E 's/(num_train_samples:\s*)2\s*/\1 1/' "$config_file"
-    if [ $? -eq 0 ]; then
-        log "INFO" "✅ Successfully modified num_train_samples to 1"
-        cat "$config_file" >> "$LOG_FILE"
-    else
-        log "ERROR" "❌ Failed to modify $config_file"
-        echo -e "${RED}❌ Failed to modify $config_file${NC}"
-        return 1
-    fi
-    bash "./run_rl_swarm.sh"
-    log "INFO" "📝 Content of $config_file after running run_rl_swarm.sh:"
-    cat "$config_file" >> "$LOG_FILE"
+    sed -i -E 's/(num_train_samples:\s*)2/\1 1/' $SWARM_DIR/rgym_exp/config/rg-swarm.yaml && bash run_rl_swarm.sh
+}
+
 # Swap Management
 manage_swap() {
     log "INFO" "Starting swap file management for $SWAP_FILE..."
