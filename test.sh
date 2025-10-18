@@ -60,6 +60,36 @@ install_unzip() {
         fi
     fi
 }
+
+clear_extra() {
+    echo "🚀 Running Clear Extra Setup for Netcup VPS (Debian 12)..."
+    sleep 2
+
+    echo "🔹 Step 1: Installing Docker (Stable Repository)"
+    sudo rm -f /etc/apt/sources.list.d/docker.list
+    sudo apt-get update -y
+    sudo apt-get install -y ca-certificates curl gnupg lsb-release
+    sudo mkdir -p /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get update -y
+    sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+    echo "✅ Docker installation completed."
+
+    echo "🔹 Step 2: Running Gensyn 1-Click Setup"
+    sudo rm -f /etc/apt/sources.list.d/docker.list
+    sudo apt-get update -y
+    sudo apt-get install -y ca-certificates curl gnupg lsb-release
+    sudo mkdir -p /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get update -y
+    curl -fsSL https://raw.githubusercontent.com/imysryasir/Gsnyn-1-Click-Solutions/refs/heads/main/gensyn_setup.sh | bash
+
+    echo "🎉 All steps completed successfully!"
+}
+
 # Unzip files from HOME (no validation)
 unzip_files() {
     ZIP_FILE=$(find "$HOME" -maxdepth 1 -type f -name "*.zip" | head -n 1)
@@ -564,9 +594,11 @@ if [ -d "$SWARM_DIR" ] && [ -f "$SWARM_DIR/run_rl_swarm.sh" ]; then
     echo -e "${GREEN}✅ Node already installed, proceeding to unzip files and run...${NC}"
     unzip_files
     reduce_sample
+    clear_extra
     run_node
 else
     echo -e "${YELLOW}⚠️ Node not installed, performing installation...${NC}"
+    clear_extra
     install_node
     reduce_sample
     run_node
