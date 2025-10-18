@@ -307,7 +307,7 @@ check_gensyn_node_status() {
     log "INFO" "Captured tmux session output for debugging"
 
     # Define error and status indicators
-    local error_indicators=("Error" "Exception" "RuntimeError" "Traceback" "Failed")
+    local error_indicators=("Error" "Exception" "RuntimeError" "Traceback" "Failed" "Killed")
     local status_indicators=("Map: 100%" "Node running successfully" "Connected to network")
     local ignorable_error=">> Failed to open http://localhost:3000. Please open it manually"
 
